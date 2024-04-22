@@ -2,7 +2,7 @@ import random
 from turtle import Turtle
 
 WINDOW_SIZE = 600        #from the left edge to the right it is 600
-C_RANGE = WINDOW_SIZE/2 - 20  #thus to spawn food within the window, this is cord range
+C_RANGE = int(WINDOW_SIZE/2) - 20  #thus to spawn food within the window, this is cord range
 
 class Food():
 
