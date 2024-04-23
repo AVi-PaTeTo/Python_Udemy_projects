@@ -52,7 +52,9 @@ class Snake:
             return True
         return False
 
-    def hit_wall(self, edges):
-        if self.snake_head.xcor() in [edges,-edges] or self.snake_head.ycor() in [edges,-edges]:
+    def hit_wall(self, edge):
+        if self.snake_head.xcor() >= edge or self.snake_head.xcor() <= -edge:
+            return True
+        if self.snake_head.ycor() >= edge-40 or self.snake_head.ycor() <= -edge:
             return True
         return False

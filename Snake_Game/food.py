@@ -2,20 +2,22 @@ import random
 from turtle import Turtle
 
 WINDOW_SIZE = 600        #from the left edge to the right it is 600
-C_RANGE = int(WINDOW_SIZE/2) - 20  #thus to spawn food within the window, this is cord range
+C_RANGE = int(WINDOW_SIZE/2) - 40  #thus to spawn food within the window, this is cord range
 
 class Food():
 
     def __init__(self) -> None:
         self.food = Turtle("circle")
-        self.food.setpos(200,200)
+        self.food.shapesize(0.8)
+        self.food.setpos(200,120)
         self.food.color("red")
         self.food.pu()
+        self.eaten = 0
 
     #this method spawns a food item
     def spawn(self, cord_list): #input a list of cords
         cord = random.randrange
-        cord_for_food = (cord(-C_RANGE, C_RANGE, 20),cord(-C_RANGE, C_RANGE,20))
+        cord_for_food = (cord(-C_RANGE, C_RANGE, 20),cord(-C_RANGE+60, C_RANGE,20))
         if  cord_for_food not in cord_list:
             self.food.setpos(cord_for_food)
         else:
@@ -29,5 +31,7 @@ class Food():
         distance = ((food_pos[0] - snake_head[0])**2 + (food_pos[1] - snake_head[1])**2)**0.5
         if distance < tolerance:  # Check if distance is less than a tolerance value
             self.spawn(cord_list)
+            print(self.food.pos())
+            self.eaten += 1
             return True    
         return False
