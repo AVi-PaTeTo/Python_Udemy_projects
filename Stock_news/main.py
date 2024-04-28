@@ -48,14 +48,14 @@ day_before_data_closing = float(stock_data["Time Series (Daily)"][day_before_dat
 difference = calculate_change(yesterday_data_closing,day_before_data_closing)
 
 
-# #fetch news and create a list of latest 3 news
+#fetch news and create a list of latest 3 news
 news_response = requests.get(news_url, params=news_parameters)
 news_response.raise_for_status()
 news_data = news_response.json()
 top_news = news_data["articles"][:3] #slicing the list and only keeping the first 3 news
 
 
-# #messaging
+#messaging
 message = client.messages.create(
         from_= T_NUM,
         body=f"\n{STOCK}: {difference}",
