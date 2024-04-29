@@ -1,7 +1,6 @@
 STOCK = "TSLA"
 COMPANY_NAME = "Tesla Inc"
 
-import os
 import requests
 import datetime as dt
 from twilio.rest import Client
@@ -33,6 +32,7 @@ news_parameters = {
     "apiKey" : news_key
 }
 
+#calculates and returns the percent change in price 
 def calculate_change(yesterday_data, day_before_data):
     change = round(abs(yesterday_data - day_before_data)/yesterday_data * 100, 2)
     if yesterday_data > day_before_data:
@@ -43,9 +43,11 @@ def calculate_change(yesterday_data, day_before_data):
 stock_response = requests.get(stock_url, params=stock_parameters)
 stock_response.raise_for_status()
 stock_data = stock_response.json()
-yesterday_data_closing  = float(stock_data["Time Series (Daily)"][yesterday_data]["4. close"])
-day_before_data_closing = float(stock_data["Time Series (Daily)"][day_before_data]["4. close"])
-difference = calculate_change(yesterday_data_closing,day_before_data_closing)
+
+#creates a list of data for each day
+daily_data = [data for (date,data) in stock_data["Time Series (Daily)"].items()]
+yesterday_closing_price  = float(daily_data[0]["4. close"])
+day_before_closing_price = float(daily_data[1]["4. close"])
 
 
 #fetch news and create a list of latest 3 news
