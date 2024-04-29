@@ -6,7 +6,9 @@ when i was working on the code, the tesla stock prices changes were less than (5
 now it will send a daily message with the change in price and 3 news article related to the company
 
 
-just a note:
+~~just a note:
 wrote this at: 
 9pm of 28th april
-and the stock api data started from 26th april and below, therefore the "yesterday" and "day_before" are set that way
+and the stock api data started from 26th april and below, therefore the "yesterday" and "day_before" are set that way~~
+
+dropped the datetime module and using basic slicing to get the first 2 data
